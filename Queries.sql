@@ -1,6 +1,6 @@
-## SQL queries
+SQL queries
 
-- #Explore the dataset
+- Explore the dataset
 
 1. Classify customers based on their sales volumes (Grade A-D)
 SELECT c.CompanyName,
@@ -38,7 +38,7 @@ ORDER BY `Total Units Sold` DESC
 
 
 
-- #Extract data and export into csv files. Then upload into Tableau.
+- Extract data and export into csv files. Then upload into Tableau.
 
 1. Extract information about company's name, location, data, total sale, etc.
 
