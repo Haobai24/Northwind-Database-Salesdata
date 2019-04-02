@@ -11,7 +11,7 @@ Establish the primary key and foreign key on each tables
 2. Design SQL queries and extract useful insights for analysis.
 
 3. Create visualization on key characteristics earns higher sales. Built a dashboard to summarize the results.
-Link to dashboard display
+- Link to dashboard display
 https://public.tableau.com/profile/hao5230#!/vizhome/Northwinddataset/Dashboard1
 
 
