@@ -6,7 +6,8 @@ The Northwind database contains information on employers customers, orders, inve
 # Approach
 
 1. Explore the SQL database entities schema to organize and connect relationships between all tables. 
-Establish the primary key and foreign key on each tables
+Establish the primary key and foreign key on each tables.
+
 
 2. Design SQL queries and extract useful insights for analysis.
 
