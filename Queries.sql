@@ -15,7 +15,7 @@ FROM Customers c
 INNER JOIN Orders o
 ON c.CustomerID = o.CustomerID
 inner join
-[Order Details] od
+`Order Details` od
 ON o.OrderID = od.OrderID
 INNER JOIN
 Products p
