@@ -36,13 +36,41 @@ ON od.ProductID = p.ProductID
 GROUP BY p.ProductName
 ORDER BY `Total Units Sold` DESC
 
+3. Sales by Year. Join orders table and price table(subquery), then group by shipped date in years
+select distinct date(o.ShippedDate) as ShippedDate, 
+    o.OrderID, 
+    od.Subtotal, 
+    year(o.ShippedDate) as Year
+from Orders o
+inner join
+( select distinct OrderID, 
+        format(sum(UnitPrice * Quantity * (1 - Discount)), 2) as total
+    from `order details`
+    group by OrderID    
+) od on o.OrderID = od.OrderID
+where o.ShippedDate is not null
+    and o.ShippedDate between date('1996-12-24') and date('1997-09-30')
+order by ShippedDate
 
+4. Sales by Category. Join orders, products and categories tables. taking account the discount for the total sales in this query, 
+then group by categoryID, followed by productname and totalsales.
+select distinct a.CategoryID, 
+    a.CategoryName,  
+    b.ProductName, 
+    sum(round(y.UnitPrice * y.Quantity * (1 - y.Discount), 2)) as Totalsales
+from `Order Details` od
+inner join Orders d on d.OrderID = od.OrderID
+inner join Products b on b.ProductID = od.ProductID
+inner join Categories a on a.CategoryID = b.CategoryID
+where d.OrderDate between date('1997/1/1') and date('1997/12/31')
+group by a.CategoryID, a.CategoryName, b.ProductName
+order by a.CategoryName, b.ProductName, Totalsales;
 
 - Extract data and export into csv files. Then upload into Tableau.
 
 1. Extract information about company's name, location, data, total sale, etc.
 
-mSELECT c.CompanyName, c.City, c.Country, CONVERT(o.OrderDate, DATE) AS Order_Date, od.Quantity, od.UnitPrice, 
+SELECT c.CompanyName, c.City, c.Country, CONVERT(o.OrderDate, DATE) AS Order_Date, od.Quantity, od.UnitPrice, 
 p.ProductName, ct.CategoryName
 FROM
 Customers c 
